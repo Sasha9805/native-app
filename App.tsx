@@ -15,15 +15,15 @@ export default function App() {
 					alignItems: "center",
 					height: 500,
 					justifyContent: "space-evenly",
-					// flexDirection: "row",
+					flexDirection: "row",
 					flexWrap: "wrap",
-					alignContent: "center",
+					// alignContent: "center",
 				}}
 			>
 				<View
 					style={{
 						backgroundColor: "tomato",
-						width: 180,
+						width: "50%",
 						height: 100,
 						alignSelf: "flex-end",
 					}}
@@ -31,7 +31,7 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "purple",
-						width: 180,
+						width: "50%",
 						height: 100,
 						alignSelf: "flex-start",
 					}}
@@ -39,7 +39,7 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "green",
-						width: 180,
+						width: "50%",
 						height: 100,
 					}}
 				></View>
