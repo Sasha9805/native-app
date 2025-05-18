@@ -1,4 +1,4 @@
-// import { StatusBar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
@@ -15,12 +15,15 @@ export default function App() {
 					alignItems: "center",
 					height: 500,
 					justifyContent: "space-evenly",
+					// flexDirection: "row",
+					flexWrap: "wrap",
+					alignContent: "center",
 				}}
 			>
 				<View
 					style={{
 						backgroundColor: "tomato",
-						width: 100,
+						width: 180,
 						height: 100,
 						alignSelf: "flex-end",
 					}}
@@ -28,14 +31,15 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "purple",
-						width: 100,
+						width: 180,
 						height: 100,
+						alignSelf: "flex-start",
 					}}
 				></View>
 				<View
 					style={{
 						backgroundColor: "green",
-						width: 100,
+						width: 180,
 						height: 100,
 					}}
 				></View>
