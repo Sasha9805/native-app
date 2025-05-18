@@ -15,15 +15,14 @@ export default function App() {
 					alignItems: "flex-end",
 					height: 500,
 					flexDirection: "row",
+					flexWrap: "wrap",
+					gap: 10,
 				}}
 			>
 				<View
 					style={{
 						backgroundColor: "tomato",
-						// flexGrow: 1,
-						// flexBasis: 100,
-						flexShrink: 1,
-						width: 200,
+						width: "40%",
 						height: 100,
 					}}
 				>
@@ -32,10 +31,7 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "purple",
-						// flexGrow: 1,
-						// flexBasis: 100,
-						flexShrink: 1,
-						width: 200,
+						width: "40%",
 						height: 100,
 					}}
 				>
@@ -44,10 +40,7 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "green",
-						// flexGrow: 1,
-						// flexBasis: 100,
-						flexShrink: 1,
-						width: 200,
+						width: "40%",
 						height: 100,
 					}}
 				>
