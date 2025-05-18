@@ -20,6 +20,10 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "tomato",
+						// flexGrow: 1,
+						// flexBasis: 100,
+						flexShrink: 1,
+						width: 200,
 						height: 100,
 					}}
 				>
@@ -28,6 +32,10 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "purple",
+						// flexGrow: 1,
+						// flexBasis: 100,
+						flexShrink: 1,
+						width: 200,
 						height: 100,
 					}}
 				>
@@ -36,6 +44,10 @@ export default function App() {
 				<View
 					style={{
 						backgroundColor: "green",
+						// flexGrow: 1,
+						// flexBasis: 100,
+						flexShrink: 1,
+						width: 200,
 						height: 100,
 					}}
 				>
