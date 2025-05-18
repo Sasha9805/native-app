@@ -1,20 +1,60 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StatusBar } from "expo-status-bar";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	return (
+		<View style={styles.container}>
+			<View style={styles.top}>
+				<Text style={styles.textStyle}>My app!</Text>
+				<Button title="Я кнопка" />
+			</View>
+
+			<View
+				style={{
+					backgroundColor: "yellow",
+					alignItems: "center",
+					height: 500,
+					justifyContent: "space-evenly",
+				}}
+			>
+				<View
+					style={{
+						backgroundColor: "tomato",
+						width: 100,
+						height: 100,
+						alignSelf: "flex-end",
+					}}
+				></View>
+				<View
+					style={{
+						backgroundColor: "purple",
+						width: 100,
+						height: 100,
+					}}
+				></View>
+				<View
+					style={{
+						backgroundColor: "green",
+						width: 100,
+						height: 100,
+					}}
+				></View>
+			</View>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		marginTop: 70,
+	},
+	top: {
+		flexDirection: "row",
+	},
+	textStyle: {
+		color: "blue",
+		fontSize: 24,
+		borderWidth: 1,
+		borderColor: "blue",
+	},
 });
