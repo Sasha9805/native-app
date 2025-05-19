@@ -1,5 +1,6 @@
 import { Button, StyleSheet, Text, View, Image } from "react-native";
 import { Input } from "./shared/Input/Input";
+import { Colors, Gaps } from "./shared/tokens";
 
 export default function App() {
 	return (
@@ -26,18 +27,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		padding: 55,
-		backgroundColor: "#16171D",
+		backgroundColor: Colors.black,
 	},
 	content: {
 		alignItems: "center",
-		gap: 50,
+		gap: Gaps.g50,
 	},
 	form: {
-		gap: 16,
+		gap: Gaps.g16,
 		alignSelf: "stretch",
-	},
-	input: {
-		backgroundColor: "#2E2D3D",
 	},
 	logo: {
 		width: 220,
