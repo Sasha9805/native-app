@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
 import { ErrorNotificationProps } from "./ErrorNotificationProps";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, Animated } from "react-native";
 import { Colors, Fonts } from "../tokens";
 
 export function ErrorNotification({ error }: ErrorNotificationProps) {
 	const [isShown, setIsShown] = useState<boolean>(false);
+
+	const animatedValue = new Animated.Value(-100);
+
+	const onEnter = () => {
+		Animated.timing(animatedValue, {
+			toValue: 0,
+			duration: 300,
+			useNativeDriver: true,
+		}).start(() => {
+			console.log("Animation finished");
+		});
+	};
 
 	useEffect(() => {
 		if (!error) {
@@ -12,6 +24,13 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 		}
 
 		setIsShown(true);
+
+		// NO ANIMATION
+		// Animated.timing(animatedValue, {
+		// 	toValue: 0,
+		// 	duration: 1000,
+		// 	useNativeDriver: true,
+		// }).start();
 
 		const timerId = setTimeout(() => {
 			setIsShown(false);
@@ -27,9 +46,15 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 	}
 
 	return (
-		<View style={styles.error}>
+		<Animated.View
+			style={[
+				styles.error,
+				{ transform: [{ translateY: animatedValue }] },
+			]}
+			onLayout={onEnter}
+		>
 			<Text style={styles.errorText}>{error}</Text>
-		</View>
+		</Animated.View>
 	);
 }
 
@@ -37,7 +62,7 @@ const styles = StyleSheet.create({
 	error: {
 		position: "absolute",
 		width: Dimensions.get("window").width,
-		top: 0,
+		top: 50,
 		backgroundColor: Colors.red,
 		padding: 15,
 	},
