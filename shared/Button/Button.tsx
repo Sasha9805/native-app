@@ -3,37 +3,26 @@ import {
 	type PressableProps,
 	StyleSheet,
 	Text,
-	View,
 	Animated,
 } from "react-native";
 import { Colors, Fonts, Radius } from "../tokens";
 
 export function Button({ text, ...props }: PressableProps & { text: string }) {
-	const animatedValue = new Animated.ValueXY({ x: 0, y: 0 });
+	const animatedValue = new Animated.Value(100);
+	const color = animatedValue.interpolate({
+		inputRange: [0, 100],
+		outputRange: [Colors.primaryHover, Colors.primary],
+	});
+
 	Animated.timing(animatedValue, {
-		toValue: {
-			x: 100,
-			y: 100,
-		},
+		toValue: 0,
 		duration: 2000,
-		useNativeDriver: false,
+		useNativeDriver: true,
 	}).start();
 
 	return (
 		<Pressable {...props}>
-			<Animated.View
-				style={[
-					styles.button,
-					{
-						width: animatedValue.x,
-						height: animatedValue.y,
-						// transform: [
-						// 	{ translateX: animatedValue.x },
-						// 	{ translateY: animatedValue.y },
-						// ],
-					},
-				]}
-			>
+			<Animated.View style={[styles.button, { backgroundColor: color }]}>
 				<Text style={styles.text}>{text}</Text>
 			</Animated.View>
 		</Pressable>
@@ -45,7 +34,6 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: Radius.r10,
-		backgroundColor: Colors.primary,
 		height: 58,
 	},
 	text: {
