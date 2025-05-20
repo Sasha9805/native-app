@@ -4,7 +4,7 @@ import {
 	StyleSheet,
 	Text,
 	Animated,
-	GestureResponderEvent,
+	type GestureResponderEvent,
 } from "react-native";
 import { Colors, Fonts, Radius } from "../tokens";
 
