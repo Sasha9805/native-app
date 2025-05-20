@@ -4,6 +4,7 @@ import {
 	StyleSheet,
 	Text,
 	Animated,
+	GestureResponderEvent,
 } from "react-native";
 import { Colors, Fonts, Radius } from "../tokens";
 
@@ -14,14 +15,26 @@ export function Button({ text, ...props }: PressableProps & { text: string }) {
 		outputRange: [Colors.primaryHover, Colors.primary],
 	});
 
-	Animated.timing(animatedValue, {
-		toValue: 0,
-		duration: 2000,
-		useNativeDriver: true,
-	}).start();
+	const fadeIn = (e: GestureResponderEvent) => {
+		Animated.timing(animatedValue, {
+			toValue: 0,
+			duration: 100,
+			useNativeDriver: true,
+		}).start();
+		props.onPressIn?.(e);
+	};
+
+	const fadeOut = (e: GestureResponderEvent) => {
+		Animated.timing(animatedValue, {
+			toValue: 100,
+			duration: 100,
+			useNativeDriver: true,
+		}).start();
+		props.onPressOut?.(e);
+	};
 
 	return (
-		<Pressable {...props}>
+		<Pressable {...props} onPressIn={fadeIn} onPressOut={fadeOut}>
 			<Animated.View style={[styles.button, { backgroundColor: color }]}>
 				<Text style={styles.text}>{text}</Text>
 			</Animated.View>
