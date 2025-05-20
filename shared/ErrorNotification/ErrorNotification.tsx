@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ErrorNotificationProps } from "./ErrorNotificationProps";
-import { View, Text, StyleSheet, Dimensions, Animated } from "react-native";
+import { Text, StyleSheet, Dimensions, Animated } from "react-native";
 import { Colors, Fonts } from "../tokens";
 
 export function ErrorNotification({ error }: ErrorNotificationProps) {
@@ -12,8 +12,9 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 		Animated.timing(animatedValue, {
 			toValue: 0,
 			duration: 300,
-			useNativeDriver: true,
+			useNativeDriver: false,
 		}).start(() => {
+			console.log("aa", animatedValue);
 			console.log("Animation finished");
 		});
 	};
@@ -30,7 +31,9 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 		// 	toValue: 0,
 		// 	duration: 1000,
 		// 	useNativeDriver: true,
-		// }).start();
+		// }).start(() => {
+		// 	console.log("aa", animatedValue);
+		// });
 
 		const timerId = setTimeout(() => {
 			setIsShown(false);
@@ -44,6 +47,8 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 	if (!isShown) {
 		return <></>;
 	}
+
+	console.log(animatedValue);
 
 	return (
 		<Animated.View
