@@ -7,11 +7,11 @@ import {
 	Animated,
 } from "react-native";
 import { Colors, Fonts, Radius } from "../tokens";
+import { useEffect } from "react";
 
 export function Button({ text, ...props }: PressableProps & { text: string }) {
 	const animatedValue = new Animated.ValueXY({ x: 0, y: 0 });
 	Animated.timing(animatedValue, {
-		// spring without duration
 		toValue: {
 			x: 100,
 			y: 100,
@@ -19,16 +19,15 @@ export function Button({ text, ...props }: PressableProps & { text: string }) {
 		duration: 2000,
 		useNativeDriver: true,
 	}).start();
+
+	useEffect(() => {
+		for (let i = 0; i < 10000; i++) {
+			console.log(2);
+		}
+	}, [animatedValue]);
 	return (
 		<Pressable {...props}>
 			<Animated.View
-				// style={{
-				// 	...styles.button,
-				// 	transform: [
-				// 		{ translateX: animatedValue.x },
-				// 		{ translateY: animatedValue.y },
-				// 	],
-				// }}
 				style={[
 					styles.button,
 					{
