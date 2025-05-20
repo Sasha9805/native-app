@@ -12,9 +12,8 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 		Animated.timing(animatedValue, {
 			toValue: 0,
 			duration: 300,
-			useNativeDriver: false,
+			useNativeDriver: true,
 		}).start(() => {
-			console.log("aa", animatedValue);
 			console.log("Animation finished");
 		});
 	};
@@ -25,15 +24,6 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 		}
 
 		setIsShown(true);
-
-		// NO ANIMATION
-		// Animated.timing(animatedValue, {
-		// 	toValue: 0,
-		// 	duration: 1000,
-		// 	useNativeDriver: true,
-		// }).start(() => {
-		// 	console.log("aa", animatedValue);
-		// });
 
 		const timerId = setTimeout(() => {
 			setIsShown(false);
@@ -47,8 +37,6 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 	if (!isShown) {
 		return <></>;
 	}
-
-	console.log(animatedValue);
 
 	return (
 		<Animated.View
