@@ -5,8 +5,8 @@ import {
 	Text,
 	Animated,
 	type GestureResponderEvent,
-} from "react-native";
-import { Colors, Fonts, Radius } from "../tokens";
+} from 'react-native';
+import { Colors, Fonts, Radius } from '../tokens';
 
 export function Button({ text, ...props }: PressableProps & { text: string }) {
 	const animatedValue = new Animated.Value(100);
@@ -44,8 +44,8 @@ export function Button({ text, ...props }: PressableProps & { text: string }) {
 
 const styles = StyleSheet.create({
 	button: {
-		justifyContent: "center",
-		alignItems: "center",
+		justifyContent: 'center',
+		alignItems: 'center',
 		borderRadius: Radius.r10,
 		height: 58,
 	},

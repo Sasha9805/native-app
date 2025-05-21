@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { ErrorNotificationProps } from "./ErrorNotificationProps";
-import { Text, StyleSheet, Dimensions, Animated } from "react-native";
-import { Colors, Fonts } from "../tokens";
+import { useEffect, useState } from 'react';
+import { ErrorNotificationProps } from './ErrorNotificationProps';
+import { Text, StyleSheet, Dimensions, Animated } from 'react-native';
+import { Colors, Fonts } from '../tokens';
 
 export function ErrorNotification({ error }: ErrorNotificationProps) {
 	const [isShown, setIsShown] = useState<boolean>(false);
@@ -14,7 +14,7 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 			duration: 300,
 			useNativeDriver: true,
 		}).start(() => {
-			console.log("Animation finished");
+			console.log('Animation finished');
 		});
 	};
 
@@ -40,10 +40,7 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 
 	return (
 		<Animated.View
-			style={[
-				styles.error,
-				{ transform: [{ translateY: animatedValue }] },
-			]}
+			style={[styles.error, { transform: [{ translateY: animatedValue }] }]}
 			onLayout={onEnter}
 		>
 			<Text style={styles.errorText}>{error}</Text>
@@ -53,8 +50,8 @@ export function ErrorNotification({ error }: ErrorNotificationProps) {
 
 const styles = StyleSheet.create({
 	error: {
-		position: "absolute",
-		width: Dimensions.get("window").width,
+		position: 'absolute',
+		width: Dimensions.get('window').width,
 		top: 50,
 		backgroundColor: Colors.red,
 		padding: 15,
@@ -62,6 +59,6 @@ const styles = StyleSheet.create({
 	errorText: {
 		fontSize: Fonts.f16,
 		color: Colors.white,
-		textAlign: "center",
+		textAlign: 'center',
 	},
 });
