@@ -4,8 +4,11 @@ import { Button } from '../shared/Button/Button';
 import { Colors, Gaps } from '../shared/tokens';
 import { ErrorNotification } from '../shared/ErrorNotification/ErrorNotification';
 import { useState } from 'react';
+import { Link } from 'expo-router';
 
-export default function App() {
+// /
+
+export default function Login() {
 	const [error, setError] = useState<string | undefined>();
 	const alert = () => {
 		setError('Неверный логин или пароль');
@@ -23,6 +26,9 @@ export default function App() {
 					<Button text="Войти" onPress={alert} />
 				</View>
 				<Text>Восстановить пароль</Text>
+				<Link href="/restore">
+					<Text>Восстановить пароль</Text>
+				</Link>
 			</View>
 		</View>
 	);
