@@ -44,7 +44,8 @@ export default function RootLayout() {
 					headerShown: false,
 				}}
 			>
-				<Stack.Screen name="index" />
+				<Stack.Screen name="(app)" />
+				<Stack.Screen name="login" />
 				<Stack.Screen
 					name="restore"
 					// options={{

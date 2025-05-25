@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import { Colors } from '../../shared/tokens';
+import { Colors } from '../../../shared/tokens';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function CoursePage() {
