@@ -7,7 +7,7 @@ import { Colors } from '../shared/tokens';
 export default function Restore() {
 	return (
 		<View>
-			<Link href="/">
+			<Link href="/" push>
 				<Text style={{ color: Colors.white }}>Restore</Text>
 			</Link>
 		</View>

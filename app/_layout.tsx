@@ -47,9 +47,9 @@ export default function RootLayout() {
 				<Stack.Screen name="index" />
 				<Stack.Screen
 					name="restore"
-					options={{
-						presentation: 'fullScreenModal',
-					}}
+					// options={{
+					// 	presentation: 'fullScreenModal',
+					// }}
 				/>
 			</Stack>
 		</>
