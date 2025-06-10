@@ -1,32 +1,23 @@
 import { useAtom } from 'jotai';
 import { Text, View } from 'react-native';
 import { profileAtom } from '../../entities/user/model/user.state';
-import axios from 'axios';
-import { API } from '../../entities/auth/api/api';
+import { loginAtom } from '../../entities/auth/model/auth.state';
 import { useEffect } from 'react';
-import { IAuthResponse } from '../../entities/auth/model/auth.interfaces';
 
 export default function MyCourses() {
 	const [profile] = useAtom(profileAtom);
-
-	const login = async () => {
-		console.log('WWW');
-
-		const { data } = await axios.post<IAuthResponse>(API.login, {
-			email: 'vasia@pupkin.ru',
-			password: '12345678',
-		});
-
-		console.log(data);
-	};
+	const [auth, login] = useAtom(loginAtom);
 
 	useEffect(() => {
-		login();
+		login({ email: 'vasia@pupkin.ru', password: '12345678' });
 	}, []);
 
 	return (
 		<View>
-			<Text>{profile.profile?.name}</Text>
+			<Text>
+				{profile.profile?.name}
+				{auth.access_token}
+			</Text>
 		</View>
 	);
 }
