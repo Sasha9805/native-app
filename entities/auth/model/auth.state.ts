@@ -7,15 +7,13 @@ import { API } from '../api/api';
 
 const storage = createJSONStorage<AuthState>(() => AsyncStorage);
 
-export const authAtom = atomWithStorage<AuthState>(
-	'auth',
-	{
-		access_token: null,
-		isLoading: false,
-		error: null,
-	},
-	storage,
-);
+const INITIAL_STATE = {
+	access_token: null,
+	isLoading: false,
+	error: null,
+};
+
+export const authAtom = atomWithStorage<AuthState>('auth', INITIAL_STATE, storage);
 
 export const loginAtom = atom(
 	(get) => get(authAtom),
@@ -37,7 +35,7 @@ export const loginAtom = atom(
 			});
 		} catch (error) {
 			if (error instanceof AxiosError) {
-				set(authAtom, {
+				await set(authAtom, {
 					isLoading: false,
 					access_token: null,
 					error: error.response?.data.message,
@@ -46,6 +44,10 @@ export const loginAtom = atom(
 		}
 	},
 );
+
+export const logoutAtom = atom(null, async (get, set) => {
+	await set(authAtom, INITIAL_STATE);
+});
 
 export interface AuthState {
 	access_token: string | null;
