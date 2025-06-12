@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 	error: {
 		position: 'absolute',
 		width: Dimensions.get('window').width,
-		top: 50,
+		top: 0,
 		backgroundColor: Colors.red,
 		padding: 15,
 	},
