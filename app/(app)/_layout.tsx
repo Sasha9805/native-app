@@ -23,15 +23,7 @@ export default function AppLayout() {
 				screenOptions={({ navigation }) => ({
 					headerStyle: {
 						backgroundColor: Colors.blackLight,
-						// shadowColor: Colors.blackLight,
-						// shadowOpacity: 0,
-						// height: 30,
 					},
-					// drawerItemStyle: {
-					// 	padding: 0,
-					// 	margin: 0,
-					// },
-					// drawerHideStatusBarOnOpen: true,
 					headerLeft: () => {
 						return <MenuButton navigation={navigation} />;
 					},
@@ -45,9 +37,6 @@ export default function AppLayout() {
 					sceneStyle: {
 						backgroundColor: Colors.black,
 					},
-					// drawerContentStyle: {
-					// 	backgroundColor: Colors.black,
-					// },
 				})}
 			>
 				<Drawer.Screen
