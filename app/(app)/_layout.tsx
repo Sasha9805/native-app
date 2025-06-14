@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors, Fonts } from '../../shared/tokens';
 import { StatusBar } from 'expo-status-bar';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
+import { CustomDrawer } from '../../entities/layout/ui/CustomDrawer/CustomDrawer';
 
 export default function AppLayout() {
 	const { access_token } = useAtomValue(authAtom);
@@ -18,6 +19,7 @@ export default function AppLayout() {
 		<GestureHandlerRootView>
 			<StatusBar style="light" />
 			<Drawer
+				drawerContent={(props) => <CustomDrawer {...props} />}
 				screenOptions={({ navigation }) => ({
 					headerStyle: {
 						backgroundColor: Colors.blackLight,
@@ -25,6 +27,11 @@ export default function AppLayout() {
 						// shadowOpacity: 0,
 						// height: 30,
 					},
+					// drawerItemStyle: {
+					// 	padding: 0,
+					// 	margin: 0,
+					// },
+					// drawerHideStatusBarOnOpen: true,
 					headerLeft: () => {
 						return <MenuButton navigation={navigation} />;
 					},
@@ -38,6 +45,9 @@ export default function AppLayout() {
 					sceneStyle: {
 						backgroundColor: Colors.black,
 					},
+					// drawerContentStyle: {
+					// 	backgroundColor: Colors.black,
+					// },
 				})}
 			>
 				<Drawer.Screen
