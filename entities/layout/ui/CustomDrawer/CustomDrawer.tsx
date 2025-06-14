@@ -5,20 +5,26 @@ import {
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { Colors } from '../../../../shared/tokens';
 import { CustomLink } from '../../../../shared/CustomLink/CustomLink';
+import { CloseDrawer } from '../../../../features/layout/ui/CloseDrawer/CloseDrawer';
+import { useSetAtom } from 'jotai';
+import { logoutAtom } from '../../../auth/model/auth.state';
 
 export function CustomDrawer(props: DrawerContentComponentProps) {
+	const logout = useSetAtom(logoutAtom);
+
 	return (
 		<DrawerContentScrollView {...props} contentContainerStyle={styles.scrollView}>
-			<View>
+			<View style={styles.content}>
+				<CloseDrawer {...props} />
 				<Text>TEEXT</Text>
 			</View>
-			<View>
+			<View style={styles.footer}>
+				<CustomLink text="Выход" onPress={() => logout()} href={'/login'} />
 				<Image
 					style={styles.logo}
 					source={require('../../../../assets/logo.png')}
 					resizeMode="contain"
 				/>
-				<CustomLink text="Выход" href={'/login'} />
 			</View>
 		</DrawerContentScrollView>
 	);
@@ -29,7 +35,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: Colors.black,
 	},
+	content: {
+		flex: 1,
+	},
+	footer: {
+		gap: 50,
+		alignItems: 'center',
+		marginBottom: 40,
+	},
 	logo: {
-		width: 220,
+		width: 160,
 	},
 });
