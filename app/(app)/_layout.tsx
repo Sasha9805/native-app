@@ -5,7 +5,7 @@ import { Drawer } from 'expo-router/drawer';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors, Fonts } from '../../shared/tokens';
 import { StatusBar } from 'expo-status-bar';
-import { Text } from 'react-native';
+import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
 
 export default function AppLayout() {
 	const { access_token } = useAtomValue(authAtom);
@@ -26,7 +26,7 @@ export default function AppLayout() {
 						// height: 30,
 					},
 					headerLeft: () => {
-						return <Text>ggg</Text>;
+						return <MenuButton navigation={navigation} />;
 					},
 					headerStatusBarHeight: 0,
 					headerTitleStyle: {
