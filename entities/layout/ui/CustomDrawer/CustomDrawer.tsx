@@ -16,8 +16,8 @@ import ProfileIcon from '../../../../assets/menu/profile';
 import { MenuItem } from '../MenuItem/MenuItem';
 
 const MENU = [
-	{ text: 'Профиль', icon: <ProfileIcon />, path: '/profile' },
-	{ text: 'Курсы', icon: <CoursesIcon />, path: '/(app)' },
+	{ text: 'Профиль', icon: <ProfileIcon />, path: 'profile' },
+	{ text: 'Курсы', icon: <CoursesIcon />, path: 'index' },
 ];
 
 export function CustomDrawer(props: DrawerContentComponentProps) {
@@ -34,7 +34,7 @@ export function CustomDrawer(props: DrawerContentComponentProps) {
 				<CloseDrawer {...props} />
 				<UserMenu user={profile.profile} />
 				{MENU.map((menu) => (
-					<MenuItem key={menu.path} {...menu} navigation={props.navigation} />
+					<MenuItem key={menu.path} {...menu} drawer={props} />
 				))}
 			</View>
 			<View style={styles.footer}>
@@ -53,6 +53,8 @@ const styles = StyleSheet.create({
 	scrollView: {
 		flex: 1,
 		backgroundColor: Colors.black,
+		paddingStart: 0,
+		paddingEnd: 0,
 	},
 	content: {
 		flex: 1,

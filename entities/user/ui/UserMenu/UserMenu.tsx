@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
 		gap: Gaps.g8,
+		marginBottom: 40,
 	},
 	image: { width: 70, height: 70, borderRadius: 35 },
 	name: {
