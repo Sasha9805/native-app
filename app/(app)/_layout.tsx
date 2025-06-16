@@ -7,6 +7,7 @@ import { Colors, Fonts } from '../../shared/tokens';
 import { StatusBar } from 'expo-status-bar';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
 import { CustomDrawer } from '../../widgets/layout/ui/CustomDrawer/CustomDrawer';
+import { StyleSheet } from 'react-native';
 
 export default function AppLayout() {
 	const { access_token } = useAtomValue(authAtom);
@@ -16,7 +17,7 @@ export default function AppLayout() {
 	}
 
 	return (
-		<GestureHandlerRootView style={{ flex: 1 }}>
+		<GestureHandlerRootView style={styles.wrapper}>
 			<StatusBar style="light" />
 			<Drawer
 				drawerContent={(props) => <CustomDrawer {...props} />}
@@ -56,3 +57,9 @@ export default function AppLayout() {
 		</GestureHandlerRootView>
 	);
 }
+
+const styles = StyleSheet.create({
+	wrapper: {
+		flex: 1,
+	},
+});
