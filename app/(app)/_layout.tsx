@@ -6,7 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors, Fonts } from '../../shared/tokens';
 import { StatusBar } from 'expo-status-bar';
 import { MenuButton } from '../../features/layout/ui/MenuButton/MenuButton';
-import { CustomDrawer } from '../../entities/layout/ui/CustomDrawer/CustomDrawer';
+import { CustomDrawer } from '../../widgets/layout/ui/CustomDrawer/CustomDrawer';
 
 export default function AppLayout() {
 	const { access_token } = useAtomValue(authAtom);
@@ -16,7 +16,7 @@ export default function AppLayout() {
 	}
 
 	return (
-		<GestureHandlerRootView>
+		<GestureHandlerRootView style={{ flex: 1 }}>
 			<StatusBar style="light" />
 			<Drawer
 				drawerContent={(props) => <CustomDrawer {...props} />}
