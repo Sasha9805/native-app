@@ -29,10 +29,7 @@ export default function Profile() {
 	};
 
 	const verifyMediaPermissions = async () => {
-		if (
-			!libraryPermissions?.accessPrivileges ||
-			libraryPermissions?.status === PermissionStatus.UNDETERMINED
-		) {
+		if (!libraryPermissions || libraryPermissions?.status === PermissionStatus.UNDETERMINED) {
 			const res = await requestLibraryPermissions();
 			return res.granted;
 		}
