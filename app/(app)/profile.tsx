@@ -1,14 +1,32 @@
 import { useState } from 'react';
-import { Text, View } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
+import { Alert, Text, View } from 'react-native';
+import { launchCameraAsync, useCameraPermissions, PermissionStatus } from 'expo-image-picker';
 import { Button } from '../../shared/Button/Button';
 
 export default function Profile() {
 	const [image, setImage] = useState(null);
+	const [cameraPermissions, requestCameraPermissions] = useCameraPermissions();
+
+	const verifyCameraPermissions = async () => {
+		if (!cameraPermissions || cameraPermissions?.status === PermissionStatus.UNDETERMINED) {
+			const res = await requestCameraPermissions();
+			return res.granted;
+		}
+
+		if (cameraPermissions?.status === PermissionStatus.DENIED) {
+			Alert.alert('Недостаточно прав для доступа к камере');
+			return false;
+		}
+
+		return cameraPermissions.granted;
+	};
 
 	const pickAvatar = async () => {
-		console.log('eee');
-		const result = await ImagePicker.launchCameraAsync({
+		const isPermissionsGranted = await verifyCameraPermissions();
+		if (!isPermissionsGranted) {
+			return;
+		}
+		const result = await launchCameraAsync({
 			mediaTypes: ['images'],
 			allowsEditing: true,
 			aspect: [1, 1],
