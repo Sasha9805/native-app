@@ -13,10 +13,33 @@ import { UploadResponse } from './ImageUploader.interface';
 
 interface ImageUploaderProps {
 	onUpload: (uri: string) => void;
+	onError: (error: string) => void;
 }
 
-export function ImageUploader({ onUpload }: ImageUploaderProps) {
+export function ImageUploader({ onUpload, onError }: ImageUploaderProps) {
 	const [libraryPermissions, requestLibraryPermissions] = useMediaLibraryPermissions();
+
+	const upload = async () => {
+		const isPermissionsGranted = await verifyMediaPermissions();
+		if (!isPermissionsGranted) {
+			onError('Недостаточно прав');
+			return;
+		}
+
+		const asset = await pickImage();
+		if (!asset) {
+			onError('Не выбрано изображение');
+			return;
+		}
+
+		const uploadedUrl = await uploadToServer(asset.uri, asset.fileName ?? '');
+		if (!uploadedUrl) {
+			onError('Не удалось загрузить изображение');
+			return;
+		}
+		onUpload(uploadedUrl);
+	};
+
 	const verifyMediaPermissions = async () => {
 		if (!libraryPermissions || libraryPermissions?.status === PermissionStatus.UNDETERMINED) {
 			const res = await requestLibraryPermissions();
@@ -31,22 +54,19 @@ export function ImageUploader({ onUpload }: ImageUploaderProps) {
 		return libraryPermissions.granted;
 	};
 
-	const pickAvatar = async () => {
-		const isPermissionsGranted = await verifyMediaPermissions();
-		if (!isPermissionsGranted) {
-			return;
-		}
+	const pickImage = async () => {
 		const result = await launchImageLibraryAsync({
 			mediaTypes: ['images'],
 			allowsEditing: true,
 			aspect: [1, 1],
 			quality: 0.5,
 		});
-		console.log(result);
+
 		if (!result.assets) {
-			return;
+			return null;
 		}
-		await uploadToServer(result.assets[0].uri, result.assets[0].fileName ?? '');
+
+		return result.assets[0];
 	};
 
 	const uploadToServer = async (uri: string, name: string) => {
@@ -63,7 +83,7 @@ export function ImageUploader({ onUpload }: ImageUploaderProps) {
 				},
 			});
 			console.log(data);
-			onUpload(data.urls.original);
+			return data.urls.original;
 		} catch (error) {
 			if (error instanceof AxiosError) {
 				console.error(error);
@@ -73,7 +93,7 @@ export function ImageUploader({ onUpload }: ImageUploaderProps) {
 	};
 
 	return (
-		<Pressable onPress={pickAvatar}>
+		<Pressable onPress={upload}>
 			<View style={styles.container}>
 				<UploadIcon />
 				<Text style={styles.text}>Загрузить изображение</Text>
