@@ -1,15 +1,15 @@
 import { Text, View } from 'react-native';
-import { Button } from '../../shared/Button/Button';
-import { useSetAtom } from 'jotai';
-import { logoutAtom } from '../../entities/auth/model/auth.state';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
+import { useEffect } from 'react';
 
 export default function MyCourses() {
-	const logout = useSetAtom(logoutAtom);
+	const { courses, isLoading, error } = useAtomValue(courseAtom);
+	const loadCourses = useSetAtom(loadCourseAtom);
 
-	return (
-		<View>
-			<Text>Index</Text>
-			<Button text="Выйти" onPress={logout} />
-		</View>
-	);
+	useEffect(() => {
+		loadCourses();
+	}, []);
+
+	return <View>{courses.length > 0 && courses.map((c) => <Text key={c.id}>{c.title}</Text>)}</View>;
 }
