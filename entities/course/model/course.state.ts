@@ -15,12 +15,6 @@ export const loadCourseAtom = atom(
 	async (get, set) => {
 		try {
 			const { access_token } = await get(authAtom);
-			console.log(access_token);
-			set(courseAtom, {
-				courses: [],
-				isLoading: true,
-				error: null,
-			});
 			set(courseAtom, {
 				courses: [],
 				isLoading: true,
