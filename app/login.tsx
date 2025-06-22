@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Dimensions, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Image, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
 import { Input } from '../shared/Input/Input';
 import { Button } from '../shared/Button/Button';
 import { Colors, Gaps } from '../shared/tokens';
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'stretch',
 	},
 	logo: {
-		width: 220,
+		width: Platform.select({ ios: 220, android: 300 }),
 	},
 	inputs: {
 		gap: Gaps.g16,
