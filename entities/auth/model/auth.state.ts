@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 export const authAtom = atomWithStorage<AuthState>('auth', INITIAL_STATE, storage);
 
 export const loginAtom = atom(
-	(get) => get(authAtom),
+	async (get) => get(authAtom),
 	async (get, set, { email, password }: ILoginRequest) => {
 		await set(authAtom, {
 			isLoading: true,
