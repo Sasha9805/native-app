@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, View, Image, Dimensions, KeyboardAvoidingView } from 'react-native';
 import { Input } from '../shared/Input/Input';
 import { Button } from '../shared/Button/Button';
 import { Colors, Gaps } from '../shared/tokens';
@@ -48,7 +48,7 @@ export default function Login() {
 	return (
 		<View style={styles.container}>
 			<ErrorNotification error={localError} />
-			<View style={styles.content}>
+			<KeyboardAvoidingView behavior="padding" style={styles.content}>
 				<Image style={styles.logo} source={require('../assets/logo.png')} resizeMode="contain" />
 				<View style={styles.form}>
 					<View
@@ -84,7 +84,7 @@ export default function Login() {
 					<Button text="Войти" isLoading={isLoading} onPress={submit} />
 				</View>
 				<CustomLink href={'/restore'} text="Восстановить пароль" push />
-			</View>
+			</KeyboardAvoidingView>
 		</View>
 	);
 }
