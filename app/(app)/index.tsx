@@ -1,9 +1,9 @@
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
 import { useEffect } from 'react';
 import { CourseCard } from '../../entities/course/ui/CourseCard/CourseCard';
-import { Gaps } from '../../shared/tokens';
+import { StudentCourseDescription } from '../../entities/course/model/course.model';
 
 export default function MyCourses() {
 	const { courses, isLoading, error } = useAtomValue(courseAtom);
@@ -13,18 +13,29 @@ export default function MyCourses() {
 		loadCourses();
 	}, []);
 
-	return (
-		<ScrollView>
-			<View style={styles.wrapper}>
-				{courses.length > 0 && courses.map((c) => <CourseCard key={c.id} {...c} />)}
+	const renderCourse = ({ item }: { item: StudentCourseDescription }) => {
+		return (
+			<View style={styles.item}>
+				<CourseCard {...item} />
 			</View>
-		</ScrollView>
+		);
+	};
+
+	return (
+		<>
+			{courses.length > 0 && (
+				<FlatList
+					data={courses}
+					keyExtractor={(item) => item.id.toString()}
+					renderItem={renderCourse}
+				/>
+			)}
+		</>
 	);
 }
 
 const styles = StyleSheet.create({
-	wrapper: {
-		gap: Gaps.g20,
+	item: {
 		padding: 20,
 	},
 });
