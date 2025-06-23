@@ -8,10 +8,12 @@ export const Colors = {
 	primaryHover: '#452481',
 	link: '#A97BFF',
 	red: '#CC384E',
+	border: '#4D5064',
 };
 
 export const Gaps = {
 	g8: 8,
+	g10: 10,
 	g16: 16,
 	g20: 20,
 	g50: 50,
@@ -19,6 +21,7 @@ export const Gaps = {
 
 export const Radius = {
 	r10: 10,
+	r17: 17,
 };
 
 export const Fonts = {
@@ -26,6 +29,7 @@ export const Fonts = {
 	f16: 16,
 	f18: 18,
 	f20: 20,
+	f21: 21,
 	regular: 'FiraSans-Regular',
 	semibold: 'FiraSans-SemiBold',
 };
