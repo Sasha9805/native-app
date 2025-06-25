@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, ActivityIndicator, RefreshControl, Text } from 'react-native';
+import { View, StyleSheet, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { courseAtom, loadCourseAtom } from '../../entities/course/model/course.state';
 import { useEffect } from 'react';
