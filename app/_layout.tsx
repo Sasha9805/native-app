@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
+import { Notification } from '../shared/Notification/Notification';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,6 +33,7 @@ export default function RootLayout() {
 
 	return (
 		<>
+			<Notification />
 			<StatusBar style="light" />
 			<Stack
 				screenOptions={{
