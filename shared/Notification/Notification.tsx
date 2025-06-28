@@ -12,12 +12,21 @@ export function Notification() {
 	});
 
 	useEffect(() => {
-		const sub = Notifications.addNotificationReceivedListener((notification) => {
+		const subRecieved = Notifications.addNotificationReceivedListener((notification) => {
 			console.log(notification.request.content.data);
 		});
 
+		const subResponseReceived = Notifications.addNotificationResponseReceivedListener(
+			(response) => {
+				console.log('clicked');
+				console.log(response);
+				console.log(response.notification.request.content.data);
+			},
+		);
+
 		return () => {
-			sub.remove();
+			subRecieved.remove();
+			subResponseReceived.remove();
 		};
 	}, []);
 
