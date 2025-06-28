@@ -9,7 +9,7 @@ import { Button } from '../../shared/Button/Button';
 import * as Notifications from 'expo-notifications';
 
 export default function MyCourses() {
-	const { courses, isLoading, error } = useAtomValue(courseAtom);
+	const { courses, isLoading } = useAtomValue(courseAtom);
 	const loadCourses = useSetAtom(loadCourseAtom);
 
 	useEffect(() => {
@@ -24,7 +24,28 @@ export default function MyCourses() {
 		);
 	};
 
-	const scheduleNotification = () => {
+	const allowsNotifications = async () => {
+		const settings = await Notifications.getPermissionsAsync();
+		return (
+			settings.granted || settings.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL
+		);
+	};
+
+	const requestPermissions = async () => {
+		return Notifications.requestPermissionsAsync({
+			ios: {
+				allowAlert: true,
+				allowBadge: true,
+				allowSound: true,
+			},
+		});
+	};
+
+	const scheduleNotification = async () => {
+		const granted = await allowsNotifications();
+		if (!granted) {
+			await requestPermissions();
+		}
 		Notifications.scheduleNotificationAsync({
 			content: {
 				title: 'Не забудь пройти курс',
