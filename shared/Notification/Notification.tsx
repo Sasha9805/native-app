@@ -1,4 +1,5 @@
 import * as Notifications from 'expo-notifications';
+import { router } from 'expo-router';
 import { useEffect } from 'react';
 
 export function Notification() {
@@ -18,9 +19,8 @@ export function Notification() {
 
 		const subResponseReceived = Notifications.addNotificationResponseReceivedListener(
 			(response) => {
-				console.log('clicked');
-				console.log(response);
-				console.log(response.notification.request.content.data);
+				const { alias } = response.notification.request.content.data;
+				router.push(`/(app)/course/${alias}`);
 			},
 		);
 
