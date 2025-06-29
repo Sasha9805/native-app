@@ -7,6 +7,11 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "backgroundColor": "#16171D",
+    "extra": {
+      "eas": {
+        "projectId": "5d0a572b-8b83-40cb-bd8b-6efa1413b537"
+      }
+    },
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",

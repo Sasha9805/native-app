@@ -7,6 +7,8 @@ import { StudentCourseDescription } from '../../entities/course/model/course.mod
 import { Colors } from '../../shared/tokens';
 import { Button } from '../../shared/Button/Button';
 import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+import Constants from 'expo-constants';
 
 export default function MyCourses() {
 	const { courses, isLoading } = useAtomValue(courseAtom);
@@ -46,19 +48,29 @@ export default function MyCourses() {
 		if (!granted) {
 			await requestPermissions();
 		}
-		Notifications.scheduleNotificationAsync({
-			content: {
-				title: 'Новый крус Typescript',
-				body: 'Начни учиться уже сейчас',
-				data: {
-					alias: 'typescript',
-				},
-			},
-			trigger: {
-				type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
-				seconds: 5,
-			},
-		});
+		if (Device.isDevice) {
+			const projectId =
+				Constants?.expoConfig?.extra?.eas?.projectId ?? Constants?.easConfig?.projectId;
+			const pushTokenString = (
+				await Notifications.getExpoPushTokenAsync({
+					projectId,
+				})
+			).data;
+			console.log(pushTokenString);
+		}
+		// Notifications.scheduleNotificationAsync({
+		// 	content: {
+		// 		title: 'Новый крус Typescript',
+		// 		body: 'Начни учиться уже сейчас',
+		// 		data: {
+		// 			alias: 'typescript',
+		// 		},
+		// 	},
+		// 	trigger: {
+		// 		type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+		// 		seconds: 5,
+		// 	},
+		// });
 	};
 
 	return (
