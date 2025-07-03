@@ -1,21 +1,19 @@
 {
   "expo": {
     "name": "PurpleSchool Demo App",
-    "slug": "purple-school-demo-app",
+    "slug": "purpleschoolapp",
     "description": "Приложение школы PurpleSchool для прохождения курсов",
     "version": "1.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "icon": "./assets/icon.png",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "backgroundColor": "#16171D",
     "primaryColor": "#6C38CC",
-    "extra": {
-      "eas": {
-        "projectId": "5d0a572b-8b83-40cb-bd8b-6efa1413b537"
-      }
-    },
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -29,7 +27,11 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "ru.purpleschool.purpleappdemo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -59,6 +61,13 @@
         }
       ]
     ],
-    "scheme": "purpleschool"
+    "scheme": "purpleschool",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "5d0a572b-8b83-40cb-bd8b-6efa1413b537"
+      }
+    },
+    "owner": "sasha98"
   }
 }
