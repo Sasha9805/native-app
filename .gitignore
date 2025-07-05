@@ -4,6 +4,8 @@
 node_modules/
 .env
 ios/
+android/
+build-1751712441038.apk
 
 # Expo
 .expo/
